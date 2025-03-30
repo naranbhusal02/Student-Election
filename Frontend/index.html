@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Election System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-animation">
+      <div class="ballot-box">
+        <div class="ballot-paper"></div>
+      </div>
+      <p>Loading Election System...</p>
+    </div>
+  </div>
+
+
+
+  <!-- Audio Toggle -->
+  <div class="audio-toggle">
+    <button id="toggleAudio">
+      <i class="fas fa-volume-mute" id="audioIcon"></i>
+    </button>
+    <audio id="bgMusic" loop>
+      <source src="assets/background-music.mp3" type="audio/mp3">
+    </audio>
+  </div>
+
+ 
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <span>Student</span>Vote
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#candidates">Candidates</a></li>
+        <div class="theme-toggle" >
+          <button id="toggleTheme">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </ul>
+      <div class="mobile-menu">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav> <!-- Theme Toggle -->
+    
+    <div class="auth-buttons">
+      <a href="login.html" class="btn btn-login">Log In</a>
+      <a href="register.html" class="btn btn-register">Register</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1 class="glitch" data-text="Vote for a Better Future!">Vote for a Better Future!</h1>
+      <p>Shape tomorrow by choosing your leaders today</p>
+      <div class="cta-buttons">
+        <a href="register.html" class="btn btn-primary">Register Now</a>
+        <a href="login.html" class="btn btn-secondary">Vote Now</a>
+      </div>
+    </div>
+    <div class="countdown-container">
+      <h3>Election Ends In:</h3>
+      <div class="countdown">
+        <div class="time-block">
+          <span id="days">00</span>
+          <span class="time-label">Days</span>
+        </div>
+        <div class="time-block">
+          <span id="hours">00</span>
+          <span class="time-label">Hours</span>
+        </div>
+        <div class="time-block">
+          <span id="minutes">00</span>
+          <span class="time-label">Minutes</span>
+        </div>
+        <div class="time-block">
+          <span id="seconds">00</span>
+          <span class="time-label">Seconds</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="section-header">
+      <h2>Why Voting Matters</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="about-cards">
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Representation</h3>
+        <p>Your vote ensures your voice is heard in student governance and policy decisions.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <h3>Advocacy</h3>
+        <p>Elected leaders advocate for student needs, concerns, and initiatives.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-hands-helping"></i>
+        </div>
+        <h3>Community</h3>
+        <p>Participating in elections strengthens our campus community and democratic values.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section id="timeline" class="timeline">
+    <div class="section-header">
+      <h2>Election Timeline</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">April 1</div>
+        <div class="timeline-content">
+          <h3>Nominations Open</h3>
+          <p>Candidates can submit their nominations for various positions.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">April 15</div>
+        <div class="timeline-content">
+          <h3>Campaigning Begins</h3>
+          <p>Candidates start their campaigns and present their manifestos.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">May 1</div>
+        <div class="timeline-content">
+          <h3>Voting Day</h3>
+          <p>Students cast their votes for their preferred candidates.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">May 3</div>
+        <div class="timeline-content">
+          <h3>Results Announcement</h3>
+          <p>Election results are announced and new leaders take office.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Candidates Preview Section -->
+  <section id="candidates" class="candidates-preview">
+    <div class="section-header">
+      <h2>Meet the Candidates</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="candidates-carousel">
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <div class="candidate-card">
+            <div class="candidate-image">
+              <img src="/placeholder.svg?height=150&width=150" alt="Alex Johnson">
+            </div>
+            <h3>Alex Johnson</h3>
+            <p>Presidential Candidate</p>
+            <a href="login.html" class="btn btn-small">View Profile</a>
+          </div>
+          <div class="candidate-card">
+            <div class="candidate-image">
+              <img src="/placeholder.svg?height=150&width=150" alt="Maria Garcia">
+            </div>
+            <h3>Maria Garcia</h3>
+            <p>Vice Presidential Candidate</p>
+            <a href="login.html" class="btn btn-small">View Profile</a>
+          </div>
+          <div class="candidate-card">
+            <div class="candidate-image">
+              <img src="/placeholder.svg?height=150&width=150" alt="David Kim">
+            </div>
+            <h3>David Kim</h3>
+            <p>Secretary Candidate</p>
+            <a href="login.html" class="btn btn-small">View Profile</a>
+          </div>
+          <div class="candidate-card">
+            <div class="candidate-image">
+              <img src="/placeholder.svg?height=150&width=150" alt="Sarah Patel">
+            </div>
+            <h3>Sarah Patel</h3>
+            <p>Treasurer Candidate</p>
+            <a href="login.html" class="btn btn-small">View Profile</a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Previous Leaders Section -->
+  <section class="previous-leaders">
+    <div class="section-header">
+      <h2>Previous Student Leaders</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="leaders-grid">
+      <div class="leader-card">
+        <div class="leader-image">
+          <img src="/placeholder.svg?height=120&width=120" alt="Emma Wilson">
+        </div>
+        <h3>Emma Wilson</h3>
+        <p>President 2022-2023</p>
+        <div class="leader-achievement">Improved campus sustainability initiatives</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-image">
+          <img src="/placeholder.svg?height=120&width=120" alt="James Rodriguez">
+        </div>
+        <h3>James Rodriguez</h3>
+        <p>President 2021-2022</p>
+        <div class="leader-achievement">Expanded mental health resources</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-image">
+          <img src="/placeholder.svg?height=120&width=120" alt="Sophia Chen">
+        </div>
+        <h3>Sophia Chen</h3>
+        <p>President 2020-2021</p>
+        <div class="leader-achievement">Led COVID-19 response initiatives</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span>Student</span>Vote
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#candidates">Candidates</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Election Rules</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Connect</h4>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 StudentVote. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
+

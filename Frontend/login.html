@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Student Election System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-animation">
+      <div class="ballot-box">
+        <div class="ballot-paper"></div>
+      </div>
+      <p>Loading Login...</p>
+    </div>
+  </div>
+
+  <!-- Theme Toggle -->
+  <div class="theme-toggle">
+    <button id="toggleTheme">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+
+  <!-- Back Button -->
+  <div class="back-button">
+    <a href="index.html">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </div>
+
+  <!-- Login Form -->
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2>Welcome Back</h2>
+        <p>Log in to access the election system</p>
+      </div>
+      <form id="loginForm" class="auth-form">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-icon"><i class="fas fa-envelope"></i></span>
+            <input type="email" id="email" required>
+            <label for="email">Email Address</label>
+          </div>
+          <div class="error-message" id="emailError"></div>
+        </div>
+        
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-icon"><i class="fas fa-lock"></i></span>
+            <input type="password" id="password" required>
+            <label for="password">Password</label>
+            <span class="password-toggle" onclick="togglePasswordVisibility('password')">
+              <i class="fas fa-eye"></i>
+            </span>
+          </div>
+          <div class="error-message" id="passwordError"></div>
+        </div>
+        
+        <div class="form-group remember-forgot">
+          <div class="remember-me">
+            <input type="checkbox" id="rememberMe">
+            <label for="rememberMe">Remember me</label>
+          </div>
+          <a href="#" class="forgot-password" onclick="showForgotPasswordPopup()">Forgot Password?</a>
+        </div>
+        
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Log In</button>
+        </div>
+        
+        <div class="auth-footer">
+          <p>Don't have an account? <a href="register.html">Register</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Login Link -->
+  <div class="admin-login-link">
+    <a href="admin-login.html">Admin Login</a>
+  </div>
+
+  <!-- Custom Popup -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h3 id="popupTitle">Forgot Password</h3>
+        <button class="popup-close" onclick="closePopup()">&times;</button>
+      </div>
+      <div class="popup-body">
+        <p id="popupMessage">Enter your email address to reset your password.</p>
+        <div class="input-group">
+          <span class="input-icon"><i class="fas fa-envelope"></i></span>
+          <input type="email" id="resetEmail" required>
+          <label for="resetEmail">Email Address</label>
+        </div>
+      </div>
+      <div class="popup-footer">
+        <button class="btn btn-secondary" onclick="closePopup()">Cancel</button>
+        <button class="btn btn-primary" onclick="sendResetEmail()">Send Reset Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
+
