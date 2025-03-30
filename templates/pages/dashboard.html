@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voting Dashboard - Student Election System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-animation">
+      <div class="ballot-box">
+        <div class="ballot-paper"></div>
+      </div>
+      <p>Loading Dashboard...</p>
+    </div>
+  </div>
+
+  <!-- Theme Toggle -->
+  <div class="theme-toggle">
+    <button id="toggleTheme">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+
+  <!-- Dashboard Header -->
+  <header class="dashboard-header">
+    <div class="logo">
+      <span>Student</span>Vote
+    </div>
+    <div class="header-actions">
+      <div class="notification-bell">
+        <i class="fas fa-bell"></i>
+        <span class="notification-badge">2</span>
+      </div>
+      <div class="user-profile" id="userProfileDropdown">
+        <div class="user-avatar">
+          <img src="/placeholder.svg?height=40&width=40" alt="User Avatar">
+        </div>
+        <div class="user-info">
+          <span class="user-name" id="userName">John Doe</span>
+          <span class="user-id" id="userStudentId">ID: S12345</span>
+        </div>
+        <i class="fas fa-chevron-down"></i>
+        <div class="dropdown-menu">
+          <a href="#"><i class="fas fa-user"></i> My Profile</a>
+          <a href="#"><i class="fas fa-history"></i> Voting History</a>
+          <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Main Content -->
+  <main class="dashboard-main">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="active">
+            <a href="#voting-section">
+              <i class="fas fa-vote-yea"></i>
+              <span>Vote Now</span>
+            </a>
+          </li>
+          <li>
+            <a href="#results-section">
+              <i class="fas fa-chart-bar"></i>
+              <span>Live Results</span>
+            </a>
+          </li>
+          <li>
+            <a href="#candidates-section">
+              <i class="fas fa-users"></i>
+              <span>All Candidates</span>
+            </a>
+          </li>
+          <li>
+            <a href="#timeline-section">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Election Timeline</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+      <!-- Welcome Banner -->
+      <section class="welcome-banner">
+        <div class="welcome-text">
+          <h1>Welcome, <span id="welcomeUserName">John</span>!</h1>
+          <p>Your vote matters. Make your voice heard in this student election.</p>
+        </div>
+        <div class="election-status">
+          <div class="status-badge">
+            <i class="fas fa-clock"></i>
+            <span>Election in Progress</span>
+          </div>
+          <div class="countdown">
+            <span id="dashboardCountdown">2d 15h 30m 45s</span> remaining
+          </div>
+        </div>
+      </section>
+
+      <!-- Voting Section -->
+      <section id="voting-section" class="content-section">
+        <div class="section-header">
+          <h2>Cast Your Vote</h2>
+          <p>Select your preferred candidate for each position</p>
+        </div>
+
+        <!-- Position Tabs -->
+        <div class="position-tabs">
+          <button class="position-tab active" data-position="president">President</button>
+          <button class="position-tab" data-position="vice-president">Vice President</button>
+          <button class="position-tab" data-position="secretary">Secretary</button>
+          <button class="position-tab" data-position="treasurer">Treasurer</button>
+        </div>
+
+        <!-- Candidates Grid -->
+        <div class="candidates-grid" id="candidatesGrid">
+          <!-- President Candidates -->
+          <div class="position-candidates active" data-position="president">
+            <div class="candidate-card">
+              <div class="candidate-image">
+                <img src="/placeholder.svg?height=150&width=150" alt="Alex Johnson">
+              </div>
+              <div class="candidate-info">
+                <h3>Alex Johnson</h3>
+                <p class="candidate-major">Computer Science</p>
+                <div class="candidate-manifesto">
+                  <p>Advocating for improved campus facilities and student welfare programs.</p>
+                </div>
+                <button class="btn btn-vote" data-candidate="alex-johnson" data-position="president">
+                  <i class="fas fa-check-circle"></i> Vote
+                </button>
+              </div>
+            </div>
+
+            <div class="candidate-card">
+              <div class="candidate-image">
+                <img src="/placeholder.svg?height=150&width=150" alt="Sophia Lee">
+              </div>
+              <div class="candidate-info">
+                <h3>Sophia Lee</h3>
+                <p class="candidate-major">Business Administration</p>
+                <div class="candidate-manifesto">
+                  <p>Focused on enhancing student engagement and campus diversity initiatives.</p>
+                </div>
+                <button class="btn btn-vote" data-candidate="sophia-lee" data-position="president">
+                  <i class="fas fa-check-circle"></i> Vote
+                </button>
+              </div>
+            </div>
+
+            <div class="candidate-card">
+              <div class="candidate-image">
+                <img src="/placeholder.svg?height=150&width=150" alt="Michael Brown">
+              </div>
+              <div class="candidate-info">
+                <h3>Michael Brown</h3>
+                <p class="candidate-major">Political Science</p>
+                <div class="candidate-manifesto">
+                  <p>Committed to transparency in student government and academic policy reform.</p>
+                </div>
+                <button class="btn btn-vote" data-candidate="michael-brown" data-position="president">
+                  <i class="fas fa-check-circle"></i> Vote
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vice President Candidates (Hidden by default) -->
+          <div class="position-candidates" data-position="vice-president">
+            <!-- Vice President candidates will be similar to President candidates -->
+            <div class="candidate-card">
+              <div class="candidate-image">
+                <img src="/placeholder.svg?height=150&width=150" alt="Maria Garcia">
+              </div>
+              <div class="candidate-info">
+                <h3>Maria Garcia</h3>
+                <p class="candidate-major">Psychology</p>
+                <div class="candidate-manifesto">
+                  <p>Working to improve mental health resources and student support services.</p>
+                </div>
+                <button class="btn btn-vote" data-candidate="maria-garcia" data-position="vice-president">
+                  <i class="fas fa-check-circle"></i> Vote
+                </button>
+              </div>
+            </div>
+
+            <div class="candidate-card">
+              <div class="candidate-image">
+                <img src="/placeholder.svg?height=150&width=150" alt="James Wilson">
+              </div>
+              <div class="candidate-info">
+                <h3>James Wilson</h3>
+                <p class="candidate-major">Engineering</p>
+                <div class="candidate-manifesto">
+                  <p>Dedicated to improving campus infrastructure and technology resources.</p>
+                </div>
+                <button class="btn btn-vote" data-candidate="james-wilson" data-position="vice-president">
+                  <i class="fas fa-check-circle"></i> Vote
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Secretary Candidates (Hidden by default) -->
+          <div class="position-candidates" data-position="secretary">
+            <div class="candidate-card">
+              <div class="candidate-image">
+                <img src="/placeholder.svg?height=150&width=150" alt="David Kim">
+              </div>
+              <div class="candidate-info">
+                <h3>David Kim</h3>
+                <p class="candidate-major">Communications</p>
+                <div class="candidate-manifesto">
+                  <p>Focused on improving information flow and student organization coordination.</p>
+                </div>
+                <button class="btn btn-vote" data-candidate="david-kim" data-position="secretary">
+                  <i class="fas fa-check-circle"></i> Vote
+                </button>
+              </div>
+            </div>
+
+            <div class="candidate-card">
+              <div class="candidate-image">
+                <img src="/placeholder.svg?height=150&width=150" alt="Emily Chen">
+              </div>
+              <div class="candidate-info">
+                <h3>Emily Chen</h3>
+                <p class="candidate-major">English Literature</p>
+                <div class="candidate-manifesto">
+                  <p>Committed to accurate documentation and transparent communication.</p>
+                </div>
+                <button class="btn btn-vote" data-candidate="emily-chen" data-position="secretary">
+                  <i class="fas fa-check-circle"></i> Vote
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Treasurer Candidates (Hidden by default) -->
+          <div class="position-candidates" data-position="treasurer">
+            <div class="candidate-card">
+              <div class="candidate-image">
+                <img src="/placeholder.svg?height=150&width=150" alt="Sarah Patel">
+              </div>
+              <div class="candidate-info">
+                <h3>Sarah Patel</h3>
+                <p class="candidate-major">Finance</p>
+                <div class="candidate-manifesto">
+                  <p>Experienced in budget management and financial transparency.</p>
+                </div>
+                <button class="btn btn-vote" data-candidate="sarah-patel" data-position="treasurer">
+                  <i class="fas fa-check-circle"></i> Vote
+                </button>
+              </div>
+            </div>
+
+            <div class="candidate-card">
+              <div class="candidate-image">
+                <img src="/placeholder.svg?height=150&width=150" alt="Ryan Thompson">
+              </div>
+              <div class="candidate-info">
+                <h3>Ryan Thompson</h3>
+                <p class="candidate-major">Economics</p>
+                <div class="candidate-manifesto">
+                  <p>Focused on efficient fund allocation and financial accountability.</p>
+                </div>
+                <button class="btn btn-vote" data-candidate="ryan-thompson" data-position="treasurer">
+                  <i class="fas fa-check-circle"></i> Vote
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results Section -->
+      <section id="results-section" class="content-section">
+        <div class="section-header">
+          <h2>Live Election Results</h2>
+          <p>Real-time voting statistics for all positions</p>
+        </div>
+
+        <div class="results-tabs">
+          <button class="results-tab active" data-position="president">President</button>
+          <button class="results-tab" data-position="vice-president">Vice President</button>
+          <button class="results-tab" data-position="secretary">Secretary</button>
+          <button class="results-tab" data-position="treasurer">Treasurer</button>
+        </div>
+
+        <div class="results-container">
+          <div class="results-position active" data-position="president">
+            <div class="result-card">
+              <div class="candidate-brief">
+                <img src="/placeholder.svg?height=50&width=50" alt="Alex Johnson">
+                <div class="candidate-name">Alex Johnson</div>
+              </div>
+              <div class="vote-stats">
+                <div class="vote-bar">
+                  <div class="vote-progress" style="width: 65%"></div>
+                </div>
+                <div class="vote-percentage">65%</div>
+                <div class="vote-count">325 votes</div>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="candidate-brief">
+                <img src="/placeholder.svg?height=50&width=50" alt="Sophia Lee">
+                <div class="candidate-name">Sophia Lee</div>
+              </div>
+              <div class="vote-stats">
+                <div class="vote-bar">
+                  <div class="vote-progress" style="width: 25%"></div>
+                </div>
+                <div class="vote-percentage">25%</div>
+                <div class="vote-count">125 votes</div>
+              </div>
+            </div>
+
+            <div class="result-card">
+              <div class="candidate-brief">
+                <img src="/placeholder.svg?height=50&width=50" alt="Michael Brown">
+                <div class="candidate-name">Michael Brown</div>
+              </div>
+              <div class="vote-stats">
+                <div class="vote-bar">
+                  <div class="vote-progress" style="width: 10%"></div>
+                </div>
+                <div class="vote-percentage">10%</div>
+                <div class="vote-count">50 votes</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other position results will be similar but hidden by default -->
+        </div>
+
+        <div class="total-votes">
+          <div class="votes-info">
+            <div class="votes-count">500</div>
+            <div class="votes-label">Total Votes Cast</div>
+          </div>
+          <div class="votes-info">
+            <div class="votes-count">1200</div>
+            <div class="votes-label">Eligible Voters</div>
+          </div>
+          <div class="votes-info">
+            <div class="votes-count">41.7%</div>
+            <div class="votes-label">Participation Rate</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Vote Confirmation Popup -->
+  <div class="popup" id="voteConfirmationPopup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h3>Confirm Your Vote</h3>
+        <button class="popup-close" onclick="closePopup()">&times;</button>
+      </div>
+      <div class="popup-body">
+        <p>You are about to vote for <span id="selectedCandidateName">Alex Johnson</span> for the position of <span id="selectedPosition">President</span>.</p>
+        <p class="warning-text">Note: This action cannot be undone. You can only vote once for each position.</p>
+      </div>
+      <div class="popup-footer">
+        <button class="btn btn-secondary" onclick="closePopup()">Cancel</button>
+        <button class="btn btn-primary" id="confirmVoteBtn">Confirm Vote</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Popup -->
+  <div class="popup" id="successPopup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h3>Vote Recorded!</h3>
+        <button class="popup-close" onclick="closePopup()">&times;</button>
+      </div>
+      <div class="popup-body">
+        <div class="success-animation">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <p>Your vote has been successfully recorded. Thank you for participating in the student election!</p>
+      </div>
+      <div class="popup-footer">
+        <button class="btn btn-primary" onclick="closePopup()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
+

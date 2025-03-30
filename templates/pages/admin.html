@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Student Election System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-animation">
+      <div class="ballot-box">
+        <div class="ballot-paper"></div>
+      </div>
+      <p>Loading Admin Dashboard...</p>
+    </div>
+  </div>
+
+  <!-- Theme Toggle -->
+  <div class="theme-toggle">
+    <button id="toggleTheme">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <div class="logo">
+      <span>Student</span>Vote <span class="admin-badge">Admin</span>
+    </div>
+    <div class="header-actions">
+      <div class="admin-profile" id="adminProfileDropdown">
+        <div class="admin-avatar">
+          <img src="/placeholder.svg?height=40&width=40" alt="Admin Avatar">
+        </div>
+        <div class="admin-info">
+          <span class="admin-name">Admin User</span>
+          <span class="admin-role">Election Administrator</span>
+        </div>
+        <i class="fas fa-chevron-down"></i>
+        <div class="dropdown-menu">
+          <a href="#"><i class="fas fa-user-shield"></i> Admin Profile</a>
+          <a href="#"><i class="fas fa-cog"></i> Settings</a>
+          <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Main Content -->
+  <main class="admin-main">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="active">
+            <a href="#dashboard-section">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#students-section">
+              <i class="fas fa-user-graduate"></i>
+              <span>Students</span>
+            </a>
+          </li>
+          <li>
+            <a href="#candidates-section">
+              <i class="fas fa-users"></i>
+              <span>Candidates</span>
+            </a>
+          </li>
+          <li>
+            <a href="#results-section">
+              <i class="fas fa-chart-pie"></i>
+              <span>Results</span>
+            </a>
+          </li>
+          <li>
+            <a href="#settings-section">
+              <i class="fas fa-cog"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Admin Content -->
+    <div class="admin-content">
+      <!-- Dashboard Overview -->
+      <section id="dashboard-section" class="content-section">
+        <div class="section-header">
+          <h2>Election Dashboard</h2>
+          <div class="header-actions">
+            <button class="btn btn-secondary" id="exportDataBtn">
+              <i class="fas fa-download"></i> Export Data
+            </button>
+            <button class="btn btn-primary" id="electionControlBtn">
+              <i class="fas fa-play-circle"></i> Start Election
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">1,200</div>
+              <div class="stat-label">Registered Students</div>
+            </div>
+            <div class="stat-change positive">
+              <i class="fas fa-arrow-up"></i> 5%
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-vote-yea"></i>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">500</div>
+              <div class="stat-label">Votes Cast</div>
+            </div>
+            <div class="stat-change positive">
+              <i class="fas fa-arrow-up"></i> 12%
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">12</div>
+              <div class="stat-label">Candidates</div>
+            </div>
+            <div class="stat-change neutral">
+              <i class="fas fa-minus"></i> 0%
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-percentage"></i>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">41.7%</div>
+              <div class="stat-label">Participation Rate</div>
+            </div>
+            <div class="stat-change positive">
+              <i class="fas fa-arrow-up"></i> 8%
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+          <div class="chart-container">
+            <div class="chart-header">
+              <h3>Voting Activity</h3>
+              <div class="chart-controls">
+                <select id="timeRangeSelect">
+                  <option value="day">Today</option>
+                  <option value="week" selected>This Week</option>
+                  <option value="month">This Month</option>
+                </select>
+              </div>
+            </div>
+            <div class="chart" id="votingActivityChart">
+              <!-- Canvas for chart will be inserted here by JS -->
+              <canvas id="activityChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <div class="chart-header">
+              <h3>Participation by Department</h3>
+              <div class="chart-controls">
+                <button class="chart-type-btn active" data-type="pie">
+                  <i class="fas fa-chart-pie"></i>
+                </button>
+                <button class="chart-type-btn" data-type="bar">
+                  <i class="fas fa-chart-bar"></i>
+                </button>
+              </div>
+            </div>
+            <div class="chart" id="departmentChart">
+              <!-- Canvas for chart will be inserted here by JS -->
+              <canvas id="deptChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="recent-activity">
+          <div class="section-subheader">
+            <h3>Recent Activity</h3>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <div class="activity-details">
+                <div class="activity-text">New student registered: <strong>Emma Wilson</strong></div>
+                <div class="activity-time">5 minutes ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-vote-yea"></i>
+              </div>
+              <div class="activity-details">
+                <div class="activity-text">Vote cast for <strong>President</strong> position</div>
+                <div class="activity-time">12 minutes ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-user-edit"></i>
+              </div>
+              <div class="activity-details">
+                <div class="activity-text">Candidate profile updated: <strong>Alex Johnson</strong></div>
+                <div class="activity-time">1 hour ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-vote-yea"></i>
+              </div>
+              <div class="activity-details">
+                <div class="activity-text">Vote cast for <strong>Vice President</strong> position</div>
+                <div class="activity-time">2 hours ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <div class="activity-details">
+                <div class="activity-text">New student registered: <strong>James Rodriguez</strong></div>
+                <div class="activity-time">3 hours ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Students Section -->
+      <section id="students-section" class="content-section">
+        <div class="section-header">
+          <h2>Manage Students</h2>
+          <div class="header-actions">
+            <div class="search-bar">
+              <input type="text" placeholder="Search students...">
+              <button><i class="fas fa-search"></i></button>
+            </div>
+            <button class="btn btn-primary" id="addStudentBtn">
+              <i class="fas fa-plus"></i> Add Student
+            </button>
+          </div>
+        </div>
+
+        <!-- Students Table -->
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>
+                  <input type="checkbox" id="selectAllStudents">
+                </th>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Voting Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" class="student-checkbox"></td>
+                <td>S12345</td>
+                <td>John Doe</td>
+                <td>john.doe@university.edu</td>
+                <td>Computer Science</td>
+                <td><span class="status-badge voted">Voted</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="action-btn edit-btn" title="Edit Student">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete-btn" title="Delete Student">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="action-btn reset-btn" title="Reset Password">
+                      <i class="fas fa-key"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="student-checkbox"></td>
+                <td>S12346</td>
+                <td>Jane Smith</td>
+                <td>jane.smith@university.edu</td>
+                <td>Business</td>
+                <td><span class="status-badge not-voted">Not Voted</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="action-btn edit-btn" title="Edit Student">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete-btn" title="Delete Student">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="action-btn reset-btn" title="Reset Password">
+                      <i class="fas fa-key"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="student-checkbox"></td>
+                <td>S12347</td>
+                <td>Michael Johnson</td>
+                <td>michael.j@university.edu</td>
+                <td>Engineering</td>
+                <td><span class="status-badge voted">Voted</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="action-btn edit-btn" title="Edit Student">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete-btn" title="Delete Student">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="action-btn reset-btn" title="Reset Password">
+                      <i class="fas fa-key"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="student-checkbox"></td>
+                <td>S12348</td>
+                <td>Emily Davis</td>
+                <td>emily.d@university.edu</td>
+                <td>Arts</td>
+                <td><span class="status-badge not-voted">Not Voted</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="action-btn edit-btn" title="Edit Student">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete-btn" title="Delete Student">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="action-btn reset-btn" title="Reset Password">
+                      <i class="fas fa-key"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="student-checkbox"></td>
+                <td>S12349</td>
+                <td>David Wilson</td>
+                <td>david.w@university.edu</td>
+                <td>Medicine</td>
+                <td><span class="status-badge voted">Voted</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="action-btn edit-btn" title="Edit Student">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete-btn" title="Delete Student">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="action-btn reset-btn" title="Reset Password">
+                      <i class="fas fa-key"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="pagination-btn" disabled>
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <span class="pagination-ellipsis">...</span>
+          <button class="pagination-btn">10</button>
+          <button class="pagination-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Add Student Popup -->
+  <div class="popup" id="addStudentPopup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h3>Add New Student</h3>
+        <button class="popup-close" onclick="closePopup()">&times;</button>
+      </div>
+      <div class="popup-body">
+        <form id="addStudentForm">
+          <div class="form-group">
+            <label for="studentName">Full Name</label>
+            <input type="text" id="studentName" required>
+          </div>
+          <div class="form-group">
+            <label for="studentEmail">Email Address</label>
+            <input type="email" id="studentEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="studentId">Student ID</label>
+            <input type="text" id="studentId" required>
+          </div>
+          <div class="form-group">
+            <label for="studentDepartment">Department</label>
+            <select id="studentDepartment" required>
+              <option value="">Select Department</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Business">Business</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Arts">Arts</option>
+              <option value="Medicine">Medicine</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="studentPassword">Temporary Password</label>
+            <input type="password" id="studentPassword" required>
+            <button type="button" class="generate-password-btn">Generate</button>
+          </div>
+        </form>
+      </div>
+      <div class="popup-footer">
+        <button class="btn btn-secondary" onclick="closePopup()">Cancel</button>
+        <button class="btn btn-primary" id="saveStudentBtn">Add Student</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Popup -->
+  <div class="popup" id="deleteConfirmationPopup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h3>Confirm Deletion</h3>
+        <button class="popup-close" onclick="closePopup()">&times;</button>
+      </div>
+      <div class="popup-body">
+        <div class="warning-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <p>Are you sure you want to delete this student? This action cannot be undone.</p>
+      </div>
+      <div class="popup-footer">
+        <button class="btn btn-secondary" onclick="closePopup()">Cancel</button>
+        <button class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
+
