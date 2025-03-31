@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Voting Dashboard - Student Election System</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+  <head>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  </head>
   <!-- Loading Screen -->
   <div class="loading-screen">
     <div class="loading-animation">
@@ -20,40 +14,7 @@
     </div>
   </div>
 
-  <!-- Theme Toggle -->
-  <div class="theme-toggle">
-    <button id="toggleTheme">
-      <i class="fas fa-moon"></i>
-    </button>
-  </div>
 
-  <!-- Dashboard Header -->
-  <header class="dashboard-header">
-    <div class="logo">
-      <span>Student</span>Vote
-    </div>
-    <div class="header-actions">
-      <div class="notification-bell">
-        <i class="fas fa-bell"></i>
-        <span class="notification-badge">2</span>
-      </div>
-      <div class="user-profile" id="userProfileDropdown">
-        <div class="user-avatar">
-          <img src="/placeholder.svg?height=40&width=40" alt="User Avatar">
-        </div>
-        <div class="user-info">
-          <span class="user-name" id="userName">John Doe</span>
-          <span class="user-id" id="userStudentId">ID: S12345</span>
-        </div>
-        <i class="fas fa-chevron-down"></i>
-        <div class="dropdown-menu">
-          <a href="#"><i class="fas fa-user"></i> My Profile</a>
-          <a href="#"><i class="fas fa-history"></i> Voting History</a>
-          <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
-        </div>
-      </div>
-    </div>
-  </header>
 
   <!-- Dashboard Main Content -->
   <main class="dashboard-main">
@@ -88,7 +49,7 @@
         </ul>
       </nav>
     </aside>
-
+    <br><br><b></b>
     <!-- Dashboard Content -->
     <div class="dashboard-content">
       <!-- Welcome Banner -->
@@ -401,12 +362,4 @@
     </div>
   </div>
 
-  <!-- Custom Cursor -->
-  <div class="custom-cursor"></div>
-
-  <!-- Scripts -->
-  <script src="js/main.js"></script>
-  <script src="js/dashboard.js"></script>
-</body>
-</html>
-
+{% endblock content %}
